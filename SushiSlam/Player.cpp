@@ -16,7 +16,7 @@
  * @param tableau
  * @return void
  */
-void Player::addCardToTableau(Card card, Hand hand, Tableau tableau) {
+void Player::addCardToTableau(Card &card, Hand hand, Tableau tableau) {
     return;
 }
 

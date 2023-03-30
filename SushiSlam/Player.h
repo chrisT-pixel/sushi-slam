@@ -22,7 +22,7 @@ public:
  * @param hand
  * @param tableau
  */
-void addCardToTableau(Card card, Hand hand, Tableau tableau);
+void addCardToTableau(Card &card, Hand hand, Tableau tableau);
     
 Score calcScore();
     

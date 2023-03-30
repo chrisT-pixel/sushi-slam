@@ -10,6 +10,12 @@
 
 
 class SashimiCard: public Card {
+
+	CardType cardType;
+	SashimiCard();
+	virtual const CardType& type() const override;
+	virtual std::string str() const override;
+
 };
 
 #endif //_SASHIMICARD_H

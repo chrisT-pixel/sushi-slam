@@ -12,6 +12,10 @@
 class MakiRollCard: public Card {
 public: 
     int numMakis;
+	CardType cardType;
+	MakiRollCard();
+	virtual const CardType& type() const override;
+	virtual std::string str() const override;
 };
 
 #endif //_MAKIROLLCARD_H

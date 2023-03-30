@@ -11,7 +11,11 @@
 
 class NigiriCard: public Card {
 public: 
-    enum nigiriType;
+    //enum nigiriType;
+	CardType cardType;
+	NigiriCard();
+	virtual const CardType& type() const override;
+	virtual std::string str() const override;
 };
 
 #endif //_NIGIRICARD_H

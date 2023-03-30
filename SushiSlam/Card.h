@@ -12,21 +12,25 @@ class Tableau;
 
 class Card {
 public: 
-    enum CardType;
-    bool needsSet;
+    const enum CardType {
+        Dumpling,
+        MakiRoll,
+        Nigiri,
+        Sashimi,
+        Tempura
+    };
+    //bool needsSet = true; 
+    //CardType cardType;
+
+   
     
-const CardType& type() const;
+virtual const CardType& type() const = 0;
+virtual std::string str() const = 0;
     
-/**
- * @param CardType
- */
-std::string str(enum CardType);
+//std::string str(enum CardType);
     
-/**
- * @param firstTableau
- * @param secondTableau
- */
-virtual int score(Tableau firstTableau, Tableau secondTableau) const = 0;
+
+//virtual int score(Tableau firstTableau, Tableau secondTableau) const = 0;
 };
 
 #endif //_CARD_H

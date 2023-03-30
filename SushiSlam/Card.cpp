@@ -11,42 +11,33 @@
 
 class Card {
 public:
-    enum CardType {
-        CLUBS,
-        DIAMONDS,
-        HEARTS,
-        SPADES
-    };
-    bool needsSet;
+   
+    //bool needsSet;
+    //CardType cardType = Dumpling;
 
-    const CardType& type() const {
-        return cardType_;
-    }
-
-    /**
-     * @param CardType
-     */
-    std::string str(enum CardType ct) {
+    std::string str(enum Card::CardType ct) {
         switch (ct) {
-        case CLUBS: return "Clubs";
-        case DIAMONDS: return "Diamonds";
-        case HEARTS: return "Hearts";
-        case SPADES: return "Spades";
+        case Dumpling: return "Dumpling";
+        case MakiRoll: return "MakiRoll";
+        case Nigiri: return "Nigiri";
+        case Sashimi: return "Sashimi";
+        case Tempura: return "Tempura";
         }
         return "";
     }
+   
 
     /**
      * @param firstTableau
      * @param secondTableau
      */
-    int score(Tableau firstTableau, Tableau secondTableau) {
+    /*int score(Tableau firstTableau, Tableau secondTableau) {
         // Implementation of score calculation goes here
         return 0;
-    }
+    }*/
 
 private:
-    CardType cardType_;
+   
 };
 
 #endif //_CARD_H

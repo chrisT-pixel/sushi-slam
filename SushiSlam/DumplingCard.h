@@ -10,6 +10,16 @@
 
 
 class DumplingCard: public Card {
+
+public:
+	
+	CardType cardType;
+	DumplingCard();
+	virtual const CardType& type() const override;
+	virtual std::string str() const override;
+
+
 };
+
 
 #endif //_DUMPLINGCARD_H

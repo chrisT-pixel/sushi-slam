@@ -10,6 +10,12 @@
 
 
 class TempuraCard: public Card {
+
+	CardType cardType;
+	TempuraCard();
+	virtual const CardType& type() const override;
+	virtual std::string str() const override;
+
 };
 
 #endif //_TEMPURACARD_H
