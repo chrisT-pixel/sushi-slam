@@ -31,6 +31,12 @@ int main(){
 
     g.turn();
 
+    g.turn();
+
+    g.turn();
+
+    g.turn();
+
 
     /*Deck myDeck;
     for (int i = 0; i < 88; i++) {
