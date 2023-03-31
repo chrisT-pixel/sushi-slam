@@ -11,6 +11,8 @@
 
 class SashimiCard: public Card {
 
+public:
+
 	CardType cardType;
 	SashimiCard();
 	virtual const CardType& type() const override;

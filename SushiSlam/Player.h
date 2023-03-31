@@ -4,44 +4,68 @@
 
 #pragma once
 #include <string>
-#include "Tableau.h"
 #include "Hand.h"
 #include "Score.h"
 #ifndef _PLAYER_H
 #define _PLAYER_H
+#endif
+
+typedef std::vector<Card*> CardCollection;
 
 class Player {
-public: 
+
+public:
+
     Hand hand;
     std::string name;
     Score score;
-    Tableau tableau;
+    //Tableau tableau;
+    std::string names[10] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue", "Sasha", "Tina", "Marge" };
     
-/**
- * @param card
- * @param hand
- * @param tableau
- */
-void addCardToTableau(Card &card, Hand hand, Tableau tableau);
+    Player() {
+
+        name = names[rand() % 10];
+    };
+
+    std::string getName() {
+        return name;
+    }
+
+    CardCollection tableau;
     
-Score calcScore();
     
-/**
- * @param tableau
- */
-void clearTableau(Tableau tableau);
+    void addCardToTableau(Card* card, CardCollection& hand) {
     
-/**
- * @param tableau
- */
-std::string printTableau(Tableau tableau);
+        tableau.push_back(card);
+
+        auto it = std::find(hand.begin(), hand.end(), card);
+        if (it != hand.end()) {
+            hand.erase(it);
+        }
+    }
+
+
+
+
+
+
+
     
-/**
- * @param score
- */
-int getScore(Score score);
+
     
-std::string getName();
+    
+    
+    
+   /* Score calcScore();
+
+
+    void clearTableau(Tableau tableau);
+
+
+    std::string printTableau(Tableau tableau);
+
+
+    int getScore(Score score);*/
+
 };
 
-#endif //_PLAYER_H

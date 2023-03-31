@@ -5,6 +5,9 @@
 #include "Card.h"
 #include "DumplingCard.h"
 #include "MakiRollCard.h"
+#include "NigiriCard.h"
+#include "Deck.h"
+#include "Game.h"
 
 
 #ifndef UNTITLED_TITLETEXT_H
@@ -24,7 +27,25 @@ const char* TITLE_TEXT =
 
 int main(){
     std::cout << TITLE_TEXT << "\n";
+    Game g;
 
+    g.turn();
+
+
+    /*Deck myDeck;
+    for (int i = 0; i < 88; i++) {
+        Card* card = myDeck.get_card(i);
+        std::cout << card->str() << "\n";
+    }
+
+    myDeck.shuffle();
+    for (int i = 0; i < 88; i++) {
+        Card* card = myDeck.get_card(i);
+        std::cout << card->str() << "\n";
+    }
+    
+    
+    
     DumplingCard* dPointer = new DumplingCard();
     const DumplingCard::CardType& dType = dPointer->type();
 
@@ -34,7 +55,7 @@ int main(){
 
     std::cout << dPointer->str() << "\n";
 
-    MakiRollCard* mPointer = new MakiRollCard();
+    MakiRollCard* mPointer = new MakiRollCard(MakiAmount::one);
     const MakiRollCard::CardType& mType = mPointer->type();
 
     if (mType == MakiRollCard::CardType::MakiRoll) {
@@ -43,7 +64,22 @@ int main(){
 
     std::cout << mPointer->str() << "\n";
 
-    
+    NigiriCard* nPointer = new NigiriCard(NigiriType::Squid);
+    const NigiriCard::CardType& nType = nPointer->type();
+
+    if (nType == NigiriCard::CardType::Nigiri) {
+        std::cout << "I am a Nigiri \n";
+    }
+
+    NigiriType nt = nPointer->getNigiriType();
+
+    if (nt == NigiriType::Squid) {
+        std::cout << "I am a Nigiri that is a squid \n";
+    }
+
+    std::string nTypeString = nPointer->nigiriTypeToString(nt);
+
+    std::cout << "string version of nPointers nigiri type is " << nTypeString;*/
 
 
 }

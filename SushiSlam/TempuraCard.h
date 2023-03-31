@@ -11,6 +11,8 @@
 
 class TempuraCard: public Card {
 
+public:
+
 	CardType cardType;
 	TempuraCard();
 	virtual const CardType& type() const override;
