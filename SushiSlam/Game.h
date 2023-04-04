@@ -73,14 +73,25 @@ public:
         }
 
         std::cout << "Select a card to add to your tableau: \n";
+        
+        int player1Input;
+        std::cin >> player1Input;
 
-        //access the card at index 3 of the hand
-        Card* c1 = hand1.at(3);
-        //std::cout << c->str();
+        while (player1Input > hand1.size() || player1Input <= 0 || std::cin.fail()) {
+
+            std::cout << "Select a card to add to your tableau: \n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin >> player1Input;
+
+        }
+
+        Card* c1 = hand1.at(player1Input - 1);
+        std::cout << c1->str();
 
         player1.addCardToTableau(c1, hand1);
 
-        std::cout << "PLAYER " << player2.getName() << " TURN \n";
+        std::cout << "\nPLAYER " << player2.getName() << " TURN \n";
         std::cout << "Tableau: \n";
         
         for (Card* ptr : player2.tableau) {
@@ -103,12 +114,23 @@ public:
 
         std::cout << "Select a card to add to your tableau: \n";
 
-        //access the card at index 6 of the hand
-        Card* c2 = hand2.at(6);
+        int player2Input;
+        std::cin >> player2Input;
+
+        while (player2Input > hand2.size() || player1Input <= 0 || std::cin.fail()) {
+            
+            std::cout << "Select a card to add to your tableau: \n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin >> player2Input;
+        
+        }
+
+        Card* c2 = hand2.at(player2Input - 1);
 
         player2.addCardToTableau(c2, hand2);
 
-        std::cout << "\nswapping hands now\n";
+        //std::cout << "\nswapping hands now\n";
 
         // Create the new vectors
         CardCollection copy1;
@@ -135,6 +157,17 @@ public:
         }*/
         
        
+    }
+
+    void round() {
+        
+        for (int i = 0; i < 10; i++) {
+            turn();
+        }
+       
+        std::cout << "player 1 score- " << player1.calcScoreForRound(player1.tableau, player2.tableau) << "\n";
+        std::cout << "player 2 score- " << player2.calcScoreForRound(player2.tableau, player1.tableau) << "\n";
+    
     }
 
 private:

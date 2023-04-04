@@ -29,13 +29,7 @@ int main(){
     std::cout << TITLE_TEXT << "\n";
     Game g;
 
-    g.turn();
-
-    g.turn();
-
-    g.turn();
-
-    g.turn();
+    g.round();
 
 
     /*Deck myDeck;

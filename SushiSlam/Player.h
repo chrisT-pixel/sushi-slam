@@ -4,11 +4,17 @@
 
 #pragma once
 #include <string>
+#include <iostream>
 #include "Hand.h"
 #include "Score.h"
 #ifndef _PLAYER_H
 #define _PLAYER_H
 #endif
+#include "Card.h"
+
+#include <iterator>
+#include <sstream>
+#include <algorithm>
 
 typedef std::vector<Card*> CardCollection;
 
@@ -19,7 +25,6 @@ public:
     Hand hand;
     std::string name;
     Score score;
-    //Tableau tableau;
     std::string names[10] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue", "Sasha", "Tina", "Marge" };
     
     Player() {
@@ -42,6 +47,32 @@ public:
         if (it != hand.end()) {
             hand.erase(it);
         }
+    }
+
+    int calcScoreForRound(CardCollection tableau, CardCollection otherPlayerTableau) {
+           
+        std::vector<Card::CardType> scored = {};
+        int counter = 0;
+        int score = 0;
+        
+        for (Card* ptr : tableau) {
+
+            Card::CardType ct = ptr->type();
+
+            auto iter = std::find(scored.begin(), scored.end(), ct);
+
+            if (iter == scored.end()) {
+                
+                score += ptr->score(tableau, otherPlayerTableau);
+
+                scored.push_back(ct);
+               
+            }
+
+        }
+
+        return score;
+    
     }
 
 

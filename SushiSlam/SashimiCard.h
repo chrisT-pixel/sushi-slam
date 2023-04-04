@@ -7,6 +7,8 @@
 #define _SASHIMICARD_H
 
 #include "Card.h"
+#include "Player.h"
+#include <iostream>
 
 
 class SashimiCard: public Card {
@@ -17,6 +19,35 @@ public:
 	SashimiCard();
 	virtual const CardType& type() const override;
 	virtual std::string str() const override;
+
+	/*int countSashimis() {
+		int sashimiCount = 0;
+
+		for (Card* ptr : tableau) {
+
+			std::cout << ptr->str() << "\n";
+
+		}
+
+	}*/
+
+	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override{
+
+		int sashimiCount = 0;
+
+		for (Card* ptr : tableau) {
+
+			if (ptr->type() == Sashimi) {
+				++sashimiCount;
+			}
+
+		}
+
+		std::cout << "I have just counted Sashimis";
+		return (sashimiCount / 3) * 10;
+	
+	}
+
 
 };
 
