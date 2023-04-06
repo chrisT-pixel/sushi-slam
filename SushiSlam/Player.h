@@ -22,9 +22,8 @@ class Player {
 
 public:
 
-    Hand hand;
     std::string name;
-    Score score;
+    int playerScore = 0;
     std::string names[10] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue", "Sasha", "Tina", "Marge" };
     
     Player() {
@@ -70,7 +69,8 @@ public:
             }
 
         }
-
+        
+        playerScore += score;
         return score;
     
     }

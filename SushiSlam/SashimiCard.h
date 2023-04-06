@@ -43,7 +43,6 @@ public:
 
 		}
 
-		std::cout << "I have just counted Sashimis";
 		return (sashimiCount / 3) * 10;
 	
 	}

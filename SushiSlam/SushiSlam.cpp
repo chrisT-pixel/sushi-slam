@@ -29,7 +29,7 @@ int main(){
     std::cout << TITLE_TEXT << "\n";
     Game g;
 
-    g.round();
+    // g.round();
 
 
     /*Deck myDeck;

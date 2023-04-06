@@ -34,9 +34,27 @@ public:
 		for (Card* ptr : tableau) {
 
 			if (ptr->type() == Nigiri) {
-				NigiriCard* nPtr = static_cast<NigiriCard*>(ptr);
+				NigiriCard* nPtr = dynamic_cast<NigiriCard*>(ptr);
 				//once I know the nigiri type I can score each type appropriatley 
-				nPtr->getNigiriType();
+				NigiriType nt = nPtr->getNigiriType();
+
+				if (nt == NigiriType::Egg) {
+					nigiriScore += 1;
+				}
+
+				else if (nt == NigiriType::Salmon) {
+					nigiriScore += 2;
+				}
+
+				else if (nt == NigiriType::Squid) {
+					nigiriScore += 3;
+				}
+
+				else {
+					nigiriScore += 0;
+				}
+
+
 			}
 
 		}
