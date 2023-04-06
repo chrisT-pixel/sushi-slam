@@ -168,15 +168,10 @@ public:
 
         //clear both tableaus and both hands
         hand1.clear();
-        std::cout << "hand 1 size after clearing it " << hand1.size() << "\n";
         hand2.clear();
-        std::cout << "hand 2 size after clearing it " << hand2.size() << "\n";
         player1.tableau.clear();
-        std::cout << "player 1 tableau size after clearing it " << player1.tableau.size() << "\n";
         player2.tableau.clear();
-        std::cout << "player 2 tableau size after clearing it " << player2.tableau.size() << "\n";
-
-      
+     
     
     }
 

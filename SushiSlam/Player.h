@@ -5,8 +5,6 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "Hand.h"
-#include "Score.h"
 #ifndef _PLAYER_H
 #define _PLAYER_H
 #endif

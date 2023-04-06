@@ -131,15 +131,11 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DumplingCard.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Hand.cpp" />
     <ClCompile Include="MakiRollCard.cpp" />
     <ClCompile Include="NigiriCard.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Round.cpp" />
     <ClCompile Include="SashimiCard.cpp" />
-    <ClCompile Include="Score.cpp" />
     <ClCompile Include="SushiSlam.cpp" />
-    <ClCompile Include="Tableau.cpp" />
     <ClCompile Include="TempuraCard.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,14 +143,10 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DumplingCard.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Hand.h" />
     <ClInclude Include="MakiRollCard.h" />
     <ClInclude Include="NigiriCard.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Round.h" />
     <ClInclude Include="SashimiCard.h" />
-    <ClInclude Include="Score.h" />
-    <ClInclude Include="Tableau.h" />
     <ClInclude Include="TempuraCard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

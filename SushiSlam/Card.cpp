@@ -4,7 +4,6 @@
 
 
 #include "Card.h"
-#include "Tableau.h"
 #include <string>
 #ifndef _CARD_H
 #define _CARD_H

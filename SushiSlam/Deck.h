@@ -1,6 +1,3 @@
-/**
- * Project Sushi Slam
- */
 
 #pragma once
 #include "Card.h"

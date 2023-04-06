@@ -30,9 +30,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MakiRollCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,16 +39,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Round.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SashimiCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Score.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tableau.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TempuraCard.cpp">
@@ -71,9 +59,6 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MakiRollCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -83,16 +68,7 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Round.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SashimiCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Score.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tableau.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TempuraCard.h">
