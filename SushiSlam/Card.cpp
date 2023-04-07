@@ -14,7 +14,7 @@ public:
     //bool needsSet;
     //CardType cardType = Dumpling;
 
-    std::string str(enum Card::CardType ct) {
+   /* std::string str(enum Card::CardType ct) {
         switch (ct) {
         case Dumpling: return "Dumpling";
         case MakiRoll: return "MakiRoll";
@@ -23,7 +23,7 @@ public:
         case Tempura: return "Tempura";
         }
         return "";
-    }
+    }*/
    
 
     /**

@@ -3,7 +3,6 @@
 #pragma once
 #ifndef _NIGIRICARD_H
 #define _NIGIRICARD_H
-#include <iostream>
 #include "Card.h"
 #include "Player.h"
 
@@ -18,12 +17,13 @@ class NigiriCard: public Card {
 
 public: 
    
-	CardType cardType;
+	
 	NigiriCard(NigiriType nigiriType_);
+	
+	CardType cardType;
 	
 	virtual const CardType& type() const override;
 	virtual std::string str() const override;
-
 	NigiriType getNigiriType() const { return nigiriType_;};
 	std::string nigiriTypeToString(NigiriType nt);
 
@@ -71,4 +71,4 @@ private:
 
 };
 
-#endif //_NIGIRICARD_H
+#endif 
