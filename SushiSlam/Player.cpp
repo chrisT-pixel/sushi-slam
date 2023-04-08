@@ -52,3 +52,12 @@ int Player::calcScoreForRound(CardCollection tableau, CardCollection otherPlayer
     return score;
 
 }
+
+Player::~Player(){
+    
+    for (Card* card : _tableau) {
+
+        delete card;
+
+    }
+}

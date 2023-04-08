@@ -25,6 +25,8 @@ public:
     void addCardToTableau(Card* card, CardCollection& hand);
     int calcScoreForRound(CardCollection tableau, CardCollection otherPlayerTableau);
 
+    ~Player();
+
 private:
     std::string _names[10] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue", "Sasha", "Tina", "Marge" };
     std::string _name;

@@ -17,15 +17,15 @@ class Game {
 public: 
     Game() {
         
-        Deck deck;
-        deck.populateDeck();
+        Deck* deck = new Deck();
+        deck->populateDeck();
         std::cout << std::endl;
-        deck.shuffle();
+        deck->shuffle();
       
-        player1 = Player();
-        player2 = Player();
+        player1 = new Player();
+        player2 = new Player();
 
-        std::vector<Card*> gameCards = deck.getCards();
+        std::vector<Card*> gameCards = deck->getCards();
 
         for (int i = 0; i < 3; i++) {
             ++roundNumber;
@@ -44,22 +44,39 @@ public:
         }
 
         std::cout << "~~~ End of game! ~~~\n";
-        std::cout << "PLAYER " << player1.getName() << " final score: " << player1.getScore() << "\n";
-        std::cout << "PLAYER " << player2.getName() << " final score: " << player2.getScore() << "\n";
+        std::cout << "PLAYER " << player1->getName() << " final score: " << player1->getScore() << "\n";
+        std::cout << "PLAYER " << player2->getName() << " final score: " << player2->getScore() << "\n";
 
         std::string winnerMessage = printWinner(player1, player2);
         std::cout << winnerMessage;
+
+        //clean up memory and exit program
+        for (Card* card : hand1) {
+
+            delete card;
+
+        }
+        for (Card* card : hand2) {
+
+            delete card;
+
+        }
+        
+        delete deck;
+        delete player1;
+        delete player2;
+        exit(0);
         
     }
 
-    std::string printWinner(Player p1, Player p2) {
+    std::string printWinner(Player* p1, Player* p2) {
 
-        if (p1.getScore() > p2.getScore()) {
-            return "Player " + player1.getName() + " WINS\n";
+        if (p1->getScore() > p2->getScore()) {
+            return "Player " + p1->getName() + " WINS\n";
         }
 
-        else if (p1.getScore() < p2.getScore()) {
-            return "Player " + player2.getName() + " WINS\n";
+        else if (p1->getScore() < p2->getScore()) {
+            return "Player " + p2->getName() + " WINS\n";
         }
 
         else {
@@ -69,10 +86,10 @@ public:
     }
 
     void turn() {
-        std::cout << "PLAYER " << player1.getName() << " TURN\n";
+        std::cout << "PLAYER " << player1->getName() << " TURN\n";
         std::cout << "Tableau: \n";
 
-        CardCollection player1Tableau = player1.getTableau();
+        CardCollection player1Tableau = player1->getTableau();
         
         for (Card* ptr : player1Tableau) {
 
@@ -107,12 +124,12 @@ public:
         Card* c1 = hand1.at(player1Input - 1);
         std::cout << c1->str();
 
-        player1.addCardToTableau(c1, hand1);
+        player1->addCardToTableau(c1, hand1);
 
-        std::cout << "\nPLAYER " << player2.getName() << " TURN \n";
+        std::cout << "\nPLAYER " << player2->getName() << " TURN \n";
         std::cout << "Tableau: \n";
 
-        CardCollection player2Tableau = player2.getTableau();
+        CardCollection player2Tableau = player2->getTableau();
         
         for (Card* ptr : player2Tableau) {
 
@@ -147,7 +164,7 @@ public:
 
         Card* c2 = hand2.at(player2Input - 1);
 
-        player2.addCardToTableau(c2, hand2);
+        player2->addCardToTableau(c2, hand2);
 
         // Create the new vectors
         CardCollection copy1;
@@ -170,25 +187,25 @@ public:
             turn();
         }
 
-        CardCollection player1Tableau = player1.getTableau();
-        CardCollection player2Tableau = player2.getTableau();
+        CardCollection player1Tableau = player1->getTableau();
+        CardCollection player2Tableau = player2->getTableau();
         
         std::cout << "~~~ end of round scoring ~~~\n";
-        std::cout << "player " << player1.getName() << " round score: " << player1.calcScoreForRound(player1Tableau, player2Tableau) << "\n";
-        std::cout << "player " << player2.getName() << " round score: " << player2.calcScoreForRound(player2Tableau, player1Tableau) << "\n";
+        std::cout << "player " << player1->getName() << " round score: " << player1->calcScoreForRound(player1Tableau, player2Tableau) << "\n";
+        std::cout << "player " << player2->getName() << " round score: " << player2->calcScoreForRound(player2Tableau, player1Tableau) << "\n";
 
         //clear both tableaus and both hands
         hand1.clear();
         hand2.clear();
-        player1.clearTableau();
-        player2.clearTableau();
+        player1->clearTableau();
+        player2->clearTableau();
      }
 
 private:
     CardCollection hand1;
     CardCollection hand2;
-    Player player1;
-    Player player2;
+    Player* player1;
+    Player* player2;
     int roundNumber = 0;
 };
 

@@ -16,7 +16,7 @@ void Deck::populateDeck() {
 
     for (int i = 0; i < 5; i++) {
         _cards.push_back(new NigiriCard(NigiriType::Squid));
-    }
+     }
 
     for (int i = 0; i < 10; i++) {
         _cards.push_back(new NigiriCard(NigiriType::Salmon));
@@ -52,6 +52,8 @@ void Deck::shuffle() {
 
 Deck::~Deck() {
     for (Card* card : _cards) {
+  
         delete card;
+        
     }
 }

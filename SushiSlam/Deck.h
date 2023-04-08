@@ -1,11 +1,11 @@
 
 #pragma once
 #include "Card.h"
-#include "DumplingCard.h";
-#include "TempuraCard.h";
-#include "MakiRollCard.h";
-#include "NigiriCard.h";
-#include "SashimiCard.h";
+#include "DumplingCard.h"
+#include "TempuraCard.h"
+#include "MakiRollCard.h"
+#include "NigiriCard.h"
+#include "SashimiCard.h"
 #include <vector>
 #include <algorithm>
 #include <random>
@@ -28,6 +28,7 @@ public:
 
 private:
   
+    //change to CardCollection
     std::vector<Card*> _cards;
     
 };
