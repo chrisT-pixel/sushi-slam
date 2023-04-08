@@ -1,14 +1,8 @@
-/**
- * Project Sushi Slam
- */
-
-
 #include "DumplingCard.h"
 
 
-
 DumplingCard::DumplingCard() {
-	this->cardType = Dumpling;
+	_cardType = Dumpling;
 }
 const DumplingCard::CardType& DumplingCard::type() const{
 	return Card::CardType::Dumpling;
@@ -18,5 +12,41 @@ std::string DumplingCard::str() const{
 	return "Dumpling";
 }
 
+int DumplingCard::score(CardCollection tableau, CardCollection otherPlayerTableau) const{
 
+	int dumplingCount = 0;
+
+	for (Card* ptr : tableau) {
+
+		if (ptr->type() == Card::CardType::Dumpling) {
+			++dumplingCount;
+		}
+
+	}
+
+	if (dumplingCount == 1) {
+		return 1;
+	}
+
+	else if (dumplingCount == 2) {
+		return 3;
+	}
+
+	else if (dumplingCount == 3) {
+		return 6;
+	}
+
+	else if (dumplingCount == 4) {
+		return 10;
+	}
+
+	else if (dumplingCount > 4) {
+		return 15;
+	}
+
+	else {
+		return 0;
+	}
+
+};
 

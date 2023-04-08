@@ -1,5 +1,3 @@
-
-
 #pragma once
 #ifndef _NIGIRICARD_H
 #define _NIGIRICARD_H
@@ -14,60 +12,20 @@ const enum class NigiriType {
 
 
 class NigiriCard: public Card {
-
 public: 
    
-	
 	NigiriCard(NigiriType nigiriType_);
-	
-	CardType cardType;
 	
 	virtual const CardType& type() const override;
 	virtual std::string str() const override;
-	NigiriType getNigiriType() const { return nigiriType_;};
+	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override;
+	NigiriType getNigiriType() const { return _nigiriType;};
 	std::string nigiriTypeToString(NigiriType nt);
-
-	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override {
-		
-		int nigiriScore = 0;
-
-		for (Card* ptr : tableau) {
-
-			if (ptr->type() == Nigiri) {
-				NigiriCard* nPtr = dynamic_cast<NigiriCard*>(ptr);
-				//once I know the nigiri type I can score each type appropriatley 
-				NigiriType nt = nPtr->getNigiriType();
-
-				if (nt == NigiriType::Egg) {
-					nigiriScore += 1;
-				}
-
-				else if (nt == NigiriType::Salmon) {
-					nigiriScore += 2;
-				}
-
-				else if (nt == NigiriType::Squid) {
-					nigiriScore += 3;
-				}
-
-				else {
-					nigiriScore += 0;
-				}
-
-
-			}
-
-		}
-
-		return nigiriScore;
-
-	};
-
 
 private:
 	
-	NigiriType nigiriType_;
-
+	CardType _cardType;
+	NigiriType _nigiriType;
 
 };
 

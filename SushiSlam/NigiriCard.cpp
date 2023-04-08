@@ -2,8 +2,8 @@
 #include "NigiriCard.h"
 
 
-NigiriCard::NigiriCard(NigiriType nigiriType) : nigiriType_(nigiriType) {
-	this->cardType = Nigiri;
+NigiriCard::NigiriCard(NigiriType nigiriType) : _nigiriType(nigiriType) {
+	_cardType = Nigiri;
 };
 
 const NigiriCard::CardType& NigiriCard::type() const {
@@ -41,5 +41,41 @@ std::string NigiriCard::str() const {
 	}
 
 }
+
+int NigiriCard::score(CardCollection tableau, CardCollection otherPlayerTableau) const {
+
+	int nigiriScore = 0;
+
+	for (Card* ptr : tableau) {
+
+		if (ptr->type() == Nigiri) {
+			NigiriCard* nPtr = dynamic_cast<NigiriCard*>(ptr);
+			//once I know the nigiri type I can score each type appropriatley 
+			NigiriType nt = nPtr->getNigiriType();
+
+			if (nt == NigiriType::Egg) {
+				nigiriScore += 1;
+			}
+
+			else if (nt == NigiriType::Salmon) {
+				nigiriScore += 2;
+			}
+
+			else if (nt == NigiriType::Squid) {
+				nigiriScore += 3;
+			}
+
+			else {
+				nigiriScore += 0;
+			}
+
+
+		}
+
+	}
+
+	return nigiriScore;
+
+};
 
 
