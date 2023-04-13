@@ -21,15 +21,14 @@ public:
     Deck() {};
 
     void populateDeck();
-    std::vector<Card*> getCards();
+    std::vector<Card*> getCards() const;
     void shuffle();
  
     ~Deck();
 
 private:
   
-    //change to CardCollection
-    std::vector<Card*> _cards;
+    CardCollection _cards;
     
 };
 

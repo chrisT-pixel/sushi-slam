@@ -8,7 +8,7 @@ const MakiRollCard::CardType& MakiRollCard::type() const {
 	return Card::CardType::MakiRoll;
 }
 
-std::string MakiRollCard::makiAmountToString(MakiAmount ma) {
+std::string MakiRollCard::makiAmountToString(MakiAmount ma) const {
     switch (ma) {
     case MakiAmount::one:
         return "(1)";
@@ -46,65 +46,51 @@ int MakiRollCard::score(CardCollection tableau, CardCollection otherPlayerTablea
 	for (Card* ptr : tableau) {
 
 		if (ptr->type() == MakiRoll) {
+			
+			// down cast the card to a MakiRoll and get the number of Maki rolls on the card
 			MakiRollCard* mPtr = dynamic_cast<MakiRollCard*>(ptr);
-			//once I know the maki type I can score each type appropriatley 
 			MakiAmount ma = mPtr->getMakiAmount();
 
+			// increment makiroll count appropriately 
 			if (ma == MakiAmount::one) {
 				playerMakiCount += 1;
-			}
-
-			else if (ma == MakiAmount::two) {
+			} else if (ma == MakiAmount::two) {
 				playerMakiCount += 2;
-			}
-
-			if (ma == MakiAmount::three) {
+			} else if (ma == MakiAmount::three) {
 				playerMakiCount += 3;
-			}
-
-			else {
+			} else {
 				playerMakiCount += 0;
 			}
 		}
-
 	}
 
 	for (Card* ptr : otherPlayerTableau) {
 
 		if (ptr->type() == MakiRoll) {
+			
+			// down cast the card to a MakiRoll and get the number of Maki rolls on the card
 			MakiRollCard* mPtr = dynamic_cast<MakiRollCard*>(ptr);
-			//once I know the maki type I can score each type appropriatley 
 			MakiAmount ma = mPtr->getMakiAmount();
 
+			// increment makiroll count appropriately
 			if (ma == MakiAmount::one) {
 				otherPlayerMakiCount += 1;
-			}
-
-			else if (ma == MakiAmount::two) {
+			} else if (ma == MakiAmount::two) {
 				otherPlayerMakiCount += 2;
-			}
-
-			if (ma == MakiAmount::three) {
+			} else if (ma == MakiAmount::three) {
 				otherPlayerMakiCount += 3;
-			}
-
-			else {
+			} else {
 				otherPlayerMakiCount += 0;
 			}
 		}
-
 	}
 
-
+	// return appropriate score based on makirolls counted
 	if (playerMakiCount > otherPlayerMakiCount) {
 		return 6;
-	}
-
-	else if (playerMakiCount < otherPlayerMakiCount) {
+	} else if (playerMakiCount < otherPlayerMakiCount) {
 		return 3;
-	}
-
-	else {
+	} else {
 		return 3;
 	}
 

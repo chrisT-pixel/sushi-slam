@@ -20,14 +20,14 @@ int SashimiCard::score(CardCollection tableau, CardCollection otherPlayerTableau
 
 	int sashimiCount = 0;
 
+	// increment sashimi count as necessary
 	for (Card* ptr : tableau) {
-
 		if (ptr->type() == Sashimi) {
 			++sashimiCount;
 		}
-
 	}
 
+	//return 10 points for every three sashimi
 	return (sashimiCount / 3) * 10;
 
 }

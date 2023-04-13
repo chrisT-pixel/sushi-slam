@@ -1,6 +1,5 @@
 #include "TempuraCard.h"
 
-
 TempuraCard::TempuraCard() {
 	_cardType = Tempura;
 }
@@ -16,14 +15,14 @@ int TempuraCard::score(CardCollection tableau, CardCollection otherPlayerTableau
 
 	int tempuraCount = 0;
 
+	// increment tempura count as necessary
 	for (Card* ptr : tableau) {
-
 		if (ptr->type() == Tempura) {
 			++tempuraCount;
 		}
-
 	}
 
+	// return 5 points for every two tempura cards
 	return (tempuraCount / 2) * 5;
 };
 

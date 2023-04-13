@@ -10,7 +10,6 @@ const enum class NigiriType {
 	Salmon
 };
 
-
 class NigiriCard: public Card {
 public: 
    
@@ -20,7 +19,7 @@ public:
 	virtual std::string str() const override;
 	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override;
 	NigiriType getNigiriType() const { return _nigiriType;};
-	std::string nigiriTypeToString(NigiriType nt);
+	std::string nigiriTypeToString(NigiriType nt) const;
 
 private:
 	

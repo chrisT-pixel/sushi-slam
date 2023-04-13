@@ -1,5 +1,6 @@
 #include "Deck.h"
 
+// adds appropriate number of each card type to the deck
 void Deck::populateDeck() {
 
     for (int i = 0; i < 14; i++) {
@@ -37,10 +38,9 @@ void Deck::populateDeck() {
     for (int i = 0; i < 14; i++) {
         _cards.push_back(new DumplingCard());
     }
-
 }
 
-std::vector<Card*> Deck::getCards() {
+CardCollection Deck::getCards() const{
     return Deck::_cards;
 }
 
@@ -52,8 +52,6 @@ void Deck::shuffle() {
 
 Deck::~Deck() {
     for (Card* card : _cards) {
-  
         delete card;
-        
     }
 }

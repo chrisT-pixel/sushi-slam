@@ -15,6 +15,7 @@ public:
 	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override;
 
 private:
+	
 	CardType _cardType;
 };
 

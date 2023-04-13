@@ -20,10 +20,11 @@ public:
 	virtual std::string str() const override;
 	virtual int score(CardCollection tableau, CardCollection otherPlayerTableau) const override;
 	MakiAmount getMakiAmount() const { return _makiAmount; };
-	std::string makiAmountToString(MakiAmount ma);
+	std::string makiAmountToString(MakiAmount ma) const;
 
 	
 private:
+	
 	CardType _cardType;
 	MakiAmount _makiAmount;
 };

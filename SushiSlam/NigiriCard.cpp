@@ -11,7 +11,7 @@ const NigiriCard::CardType& NigiriCard::type() const {
 }
 
 
-std::string NigiriCard::nigiriTypeToString(NigiriType nt) {
+std::string NigiriCard::nigiriTypeToString(NigiriType nt) const {
 	switch (nt) {
 	case NigiriType::Egg:
 		return "Egg";
@@ -49,29 +49,22 @@ int NigiriCard::score(CardCollection tableau, CardCollection otherPlayerTableau)
 	for (Card* ptr : tableau) {
 
 		if (ptr->type() == Nigiri) {
+			
+			// down cast the card to a Nigiri and get the nigiri type on the card
 			NigiriCard* nPtr = dynamic_cast<NigiriCard*>(ptr);
-			//once I know the nigiri type I can score each type appropriatley 
 			NigiriType nt = nPtr->getNigiriType();
 
+			// increment score based on nigiri types counted 
 			if (nt == NigiriType::Egg) {
 				nigiriScore += 1;
-			}
-
-			else if (nt == NigiriType::Salmon) {
+			} else if (nt == NigiriType::Salmon) {
 				nigiriScore += 2;
-			}
-
-			else if (nt == NigiriType::Squid) {
+			} else if (nt == NigiriType::Squid) {
 				nigiriScore += 3;
-			}
-
-			else {
+			} else {
 				nigiriScore += 0;
 			}
-
-
 		}
-
 	}
 
 	return nigiriScore;

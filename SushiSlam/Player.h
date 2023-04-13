@@ -18,9 +18,9 @@ public:
 
     Player() { _name = _names[rand() % 10]; };
     
-    std::string getName();
-    int getScore();
-    CardCollection getTableau();
+    std::string getName() const;
+    int getScore() const;
+    CardCollection getTableau() const;
     void clearTableau();
     void addCardToTableau(Card* card, CardCollection& hand);
     int calcScoreForRound(CardCollection tableau, CardCollection otherPlayerTableau);
@@ -28,6 +28,7 @@ public:
     ~Player();
 
 private:
+    
     std::string _names[10] = { "Sam", "Billy", "Jen", "Bob", "Sally", "Joe", "Sue", "Sasha", "Tina", "Marge" };
     std::string _name;
     int _playerScore = 0;

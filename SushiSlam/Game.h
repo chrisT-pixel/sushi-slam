@@ -9,25 +9,23 @@
 #include <algorithm>
 #include "Player.h"
 
-typedef std::vector<Card*> CardCollection;
-
-
 class Game {
 
 public: 
     
     Game();
 
-    std::string printWinner(Player* p1, Player* p2);
+    std::string printWinner(Player* p1, Player* p2) const;
     void turn();
     void round();
 
 private:
-    CardCollection hand1;
-    CardCollection hand2;
-    Player* player1;
-    Player* player2;
-    int roundNumber = 0;
+    
+    CardCollection _hand1;
+    CardCollection _hand2;
+    Player* _player1;
+    Player* _player2;
+    int _roundNumber = 0;
 };
 
 #endif

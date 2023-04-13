@@ -6,48 +6,50 @@ Game::Game() {
     deck->populateDeck();
     deck->shuffle();
 
-    player1 = new Player();
-    player2 = new Player();
+    _player1 = new Player();
+    _player2 = new Player();
 
-    std::vector<Card*> gameCards = deck->getCards();
+    CardCollection gameCards = deck->getCards();
 
-    std::cout << std::endl;
-
+    //loop three times, one for each round of the game
     for (int i = 0; i < 3; i++) {
-        ++roundNumber;
+        ++_roundNumber;
         // Remove 10 cards from deck and add them to hand1
         for (int i = 0; i < 10; i++) {
-            hand1.push_back(gameCards.back());
+            _hand1.push_back(gameCards.back());
             gameCards.pop_back();
         }
 
         // Remove 10 more cards from deck and add them to hand2
         for (int i = 0; i < 10; i++) {
-            hand2.push_back(gameCards.back());
+            _hand2.push_back(gameCards.back());
             gameCards.pop_back();
         }
         round();
     }
 
-    std::string winnerMessage = printWinner(player1, player2);
+    std::string winnerMessage = printWinner(_player1, _player2);
     std::cout << winnerMessage;
 
-    //clean up memory and exit program
-    for (Card* card : hand1) {
+    // clean up hand memory
+    for (Card* card : _hand1) {
         delete card;
     }
     
-    for (Card* card : hand2) {
+    for (Card* card : _hand2) {
         delete card;
     }
 
+    // clean up deck and player memory
     delete deck;
-    delete player1;
-    delete player2;
+    delete _player1;
+    delete _player2;
+    // exit the program
     exit(0);
 }
 
-std::string Game::printWinner(Player* p1, Player* p2) {
+//prints the winner at the end of the game
+std::string Game::printWinner(Player* p1, Player* p2) const{
 
     std::cout << "~~~ End of game! ~~~\n";
     std::cout << "PLAYER " << p1->getName() << " final score: " << p1->getScore() << "\n";
@@ -67,25 +69,25 @@ std::string Game::printWinner(Player* p1, Player* p2) {
 
 }
 
+//performs all tasks in a turn 
 void Game::turn() {
     
-    std::cout << "PLAYER " << player1->getName() << " TURN\n";
+    std::cout << "PLAYER " << _player1->getName() << " TURN\n";
     std::cout << "Tableau: \n";
 
-    CardCollection player1Tableau = player1->getTableau();
+    CardCollection player1Tableau = _player1->getTableau();
 
+    //print current player1 tableau
     for (Card* ptr : player1Tableau) {
-
         std::cout << ptr->str() << "\n";
-
     }
 
     std::cout << "Current hand: \n";
 
     int hand1Counter = 1;
 
-    for (Card* ptr : hand1) {
-
+    //output card number and each card in hand1
+    for (Card* ptr : _hand1) {
         std::cout << hand1Counter << ". " << ptr->str() << "\n";
         ++hand1Counter;
     }
@@ -95,40 +97,35 @@ void Game::turn() {
     int player1Input;
     std::cin >> player1Input;
 
-    while (player1Input > hand1.size() || player1Input <= 0 || std::cin.fail()) {
-
+    //player1 input validation 
+    while (player1Input > _hand1.size() || player1Input <= 0 || std::cin.fail()) {
         std::cout << "Select a card to add to your tableau: \n";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cin >> player1Input;
-
     }
 
-    Card* c1 = hand1.at(player1Input - 1);
-    std::cout << c1->str();
+    //after validation add selected card to tableau
+    Card* c1 = _hand1.at(player1Input - 1);
+    _player1->addCardToTableau(c1, _hand1);
 
-    player1->addCardToTableau(c1, hand1);
-
-    std::cout << "\nPLAYER " << player2->getName() << " TURN \n";
+    std::cout << "\nPLAYER " << _player2->getName() << " TURN \n";
     std::cout << "Tableau: \n";
 
-    CardCollection player2Tableau = player2->getTableau();
+    CardCollection player2Tableau = _player2->getTableau();
 
     for (Card* ptr : player2Tableau) {
-
         std::cout << ptr->str() << "\n";
-
     }
 
     std::cout << "Current hand: \n";
 
     int hand2Counter = 1;
 
-    for (Card* ptr : hand2) {
-
+    //output card number and each card in hand2
+    for (Card* ptr : _hand2) {
         std::cout << hand2Counter << ". " << ptr->str() << "\n";
         ++hand2Counter;
-
     }
 
     std::cout << "Select a card to add to your tableau: \n";
@@ -136,51 +133,52 @@ void Game::turn() {
     int player2Input;
     std::cin >> player2Input;
 
-    while (player2Input > hand2.size() || player1Input <= 0 || std::cin.fail()) {
-
+    //player2 input validation 
+    while (player2Input > _hand2.size() || player1Input <= 0 || std::cin.fail()) {
         std::cout << "Select a card to add to your tableau: \n";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         std::cin >> player2Input;
-
     }
 
-    Card* c2 = hand2.at(player2Input - 1);
+    //after validation add selected card to tableau
+    Card* c2 = _hand2.at(player2Input - 1);
+    _player2->addCardToTableau(c2, _hand2);
 
-    player2->addCardToTableau(c2, hand2);
-
-    // Create the new vectors
+    // Create new CardCollection vectors
     CardCollection copy1;
     CardCollection copy2;
 
     // Copy the contents of the original hands to new hands
-    copy1.assign(hand1.begin(), hand1.end());
-    copy2.assign(hand2.begin(), hand2.end());
+    copy1.assign(_hand1.begin(), _hand1.end());
+    copy2.assign(_hand2.begin(), _hand2.end());
 
-    hand1.assign(copy2.begin(), copy2.end());
-    hand2.assign(copy1.begin(), copy1.end());
-
+    _hand1.assign(copy2.begin(), copy2.end());
+    _hand2.assign(copy1.begin(), copy1.end());
 }
 
 void Game::round() {
 
-    std::cout << "~~~ round " << roundNumber << "/3 ~~~";
+    std::cout << "~~~ round " << _roundNumber << "/3 ~~~\n";
 
+    // ten turns per round
     for (int i = 0; i < 10; i++) {
         turn();
     }
 
-    CardCollection player1Tableau = player1->getTableau();
-    CardCollection player2Tableau = player2->getTableau();
+    // after all turns complete, get tableaus 
+    CardCollection player1Tableau = _player1->getTableau();
+    CardCollection player2Tableau = _player2->getTableau();
 
+    //calculate end of round scoring
     std::cout << "~~~ end of round scoring ~~~\n";
-    std::cout << "player " << player1->getName() << " round score: " << player1->calcScoreForRound(player1Tableau, player2Tableau) << "\n";
-    std::cout << "player " << player2->getName() << " round score: " << player2->calcScoreForRound(player2Tableau, player1Tableau) << "\n";
+    std::cout << "player " << _player1->getName() << " round score: " << _player1->calcScoreForRound(player1Tableau, player2Tableau) << "\n";
+    std::cout << "player " << _player2->getName() << " round score: " << _player2->calcScoreForRound(player2Tableau, player1Tableau) << "\n\n";
 
-    //clear both tableaus and both hands
-    hand1.clear();
-    hand2.clear();
-    player1->clearTableau();
-    player2->clearTableau();
+    //end of round, so clear both tableaus and both hands
+    _hand1.clear();
+    _hand2.clear();
+    _player1->clearTableau();
+    _player2->clearTableau();
 }
 
