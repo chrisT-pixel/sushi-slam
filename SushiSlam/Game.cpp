@@ -2,12 +2,12 @@
 
 Game::Game() {
 
-    Deck* deck = new Deck();
+    Deck* deck = new Deck{};
     deck->populateDeck();
     deck->shuffle();
 
-    _player1 = new Player();
-    _player2 = new Player();
+    _player1 = new Player{};
+    _player2 = new Player{};
 
     CardCollection gameCards = deck->getCards();
 
@@ -52,15 +52,15 @@ Game::Game() {
 std::string Game::printWinner(Player* p1, Player* p2) const{
 
     std::cout << "~~~ End of game! ~~~\n";
-    std::cout << "PLAYER " << p1->getName() << " final score: " << p1->getScore() << "\n";
-    std::cout << "PLAYER " << p2->getName() << " final score: " << p2->getScore() << "\n";
+    std::cout << "   PLAYER " << p1->getName() << " final score: " << p1->getScore() << "\n";
+    std::cout << "   PLAYER " << p2->getName() << " final score: " << p2->getScore() << "\n";
 
     if (p1->getScore() > p2->getScore()) {
-        return "Player " + p1->getName() + " WINS\n";
+        return "PLAYER " + p1->getName() + " WINS!\n";
     }
 
     else if (p1->getScore() < p2->getScore()) {
-        return "Player " + p2->getName() + " WINS\n";
+        return "PLAYER " + p2->getName() + " WINS!\n";
     }
 
     else {
@@ -109,7 +109,7 @@ void Game::turn() {
     Card* c1 = _hand1.at(player1Input - 1);
     _player1->addCardToTableau(c1, _hand1);
 
-    std::cout << "\nPLAYER " << _player2->getName() << " TURN \n";
+    std::cout << "PLAYER " << _player2->getName() << " TURN \n";
     std::cout << "Tableau: \n";
 
     CardCollection player2Tableau = _player2->getTableau();
@@ -172,8 +172,8 @@ void Game::round() {
 
     //calculate end of round scoring
     std::cout << "~~~ end of round scoring ~~~\n";
-    std::cout << "player " << _player1->getName() << " round score: " << _player1->calcScoreForRound(player1Tableau, player2Tableau) << "\n";
-    std::cout << "player " << _player2->getName() << " round score: " << _player2->calcScoreForRound(player2Tableau, player1Tableau) << "\n\n";
+    std::cout << "   PLAYER " << _player1->getName() << " round score: " << _player1->calcScoreForRound(player1Tableau, player2Tableau) << "\n";
+    std::cout << "   PLAYER " << _player2->getName() << " round score: " << _player2->calcScoreForRound(player2Tableau, player1Tableau) << "\n\n";
 
     //end of round, so clear both tableaus and both hands
     _hand1.clear();

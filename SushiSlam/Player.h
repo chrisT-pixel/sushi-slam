@@ -23,7 +23,7 @@ public:
     CardCollection getTableau() const;
     void clearTableau();
     void addCardToTableau(Card* card, CardCollection& hand);
-    int calcScoreForRound(CardCollection tableau, CardCollection otherPlayerTableau);
+    int calcScoreForRound(CardCollection& tableau, CardCollection& otherPlayerTableau);
 
     ~Player();
 

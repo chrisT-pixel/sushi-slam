@@ -30,7 +30,7 @@ void Player::addCardToTableau(Card* card, CardCollection& hand) {
     }
 }
 
-int Player::calcScoreForRound(CardCollection tableau, CardCollection otherPlayerTableau) {
+int Player::calcScoreForRound(CardCollection& tableau, CardCollection& otherPlayerTableau) {
 
     // vector to hold card types already scored
     std::vector<Card::CardType> scored = {};
